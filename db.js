@@ -15,19 +15,14 @@ const insertItem = (item) => {
   return collection.insertOne(item)
 }
 
-const getItems = () => {
-  const collection = db.collection('movies')
-  return collection.find({}).toArray()
-}
 
 const getPelis = () => {
+  // hardcodeado: peliculas con "Toy" en el titulo
   const filter = {
-   //'year': 2010
    'title':{$regex: /Toy/}
   };
   const projection = {
     'title': 1, 
-    'year': 1,
     '_id': 0
   };
   const coll = db.collection('movies');
@@ -37,26 +32,4 @@ const getPelis = () => {
 }
 
 
-const getPelisT = (titulo) => {
-  const filter = {
-   'title' : {$regex: titulo }
-  }; 
-  const projection = {
-    'title': 1, 
-    '_id': 0
-  };
-  const coll = db.collection('movies');
-  const cursor = coll.find(filter, { projection });
-  const result = cursor.toArray();
-  return result;
-}
-
-
-
-
-const updateQuantity = (id, quantity) => {
-  const collection = db.collection('items')
-  return collection.updateOne({ _id: ObjectId(id) }, { $inc: { quantity } })
-}
-
-module.exports = { init, insertItem, getItems, getPelis, getPelisT, updateQuantity }
+module.exports = { init, insertItem, getPelis }

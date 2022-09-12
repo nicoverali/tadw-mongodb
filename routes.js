@@ -9,15 +9,11 @@ const itemSchema = Joi.object().keys({
   quantity: Joi.number().integer().min(0)
 })
 
-router.get('/pelis',(req,res) => {
-  res.sendFile(__dirname + "/public/index.html");
-})
-
 router.get('/public',(req,res) => {
   res.sendFile(__dirname + "/public");
 })
 
-router.post('/item', (req, res) => {
+router.post('/peliculas', (req, res) => {
   const item = req.body
   console.log(req.body)
   const result = itemSchema.validate(item)
@@ -36,12 +32,11 @@ router.post('/item', (req, res) => {
     })
 })
 
-router.get('/items', (req, res) => {
+router.get('/peliculas', (req, res) => {
   getPelis()
     .then((items) => {
       items = items.map((item) => ({
-        title: item.title,
-        year: item.year
+        title: item.title
       }))
       res.json(items)
     })
@@ -66,17 +61,5 @@ router.get('/items/:titulo', (req, res) => {
     })
 })
 
-
-router.put('/item/:id/quantity/:quantity', (req, res) => {
-  const { id, quantity } = req.params
-  updateQuantity(id, parseInt(quantity))
-    .then(() => {
-      res.status(200).end()
-    })
-    .catch((err) => {
-      console.log(err)
-      res.status(500).end()
-    })
-})
 
 module.exports = router
