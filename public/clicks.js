@@ -2,10 +2,8 @@
 const button = document.getElementById('buttonBuscar');
 
 button.addEventListener('click', function(e) {
-  
-   
-
-    fetch('/items', {method: 'GET'})
+    // realizar la busqueda y generar la lista 
+    fetch('/peliculas', {method: 'GET'})
     .then(function(response) {
       if(response.ok) {
         return response.json();
@@ -16,7 +14,7 @@ button.addEventListener('click', function(e) {
         let lista = "";
         data.forEach((peli)=>
         {
-            lista = lista + "<p>" + peli.title + "(" + peli.year + ")" +  "</p>";
+            lista = lista + "<p>" + peli.title + "</p>";
         })
         const divRes = document.getElementById("resultados");
         divRes.innerHTML = lista;
