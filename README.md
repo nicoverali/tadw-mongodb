@@ -1,10 +1,7 @@
-# Node Express Mongo Example
+# Node Express Mongo
 
-This is a sample application demonstrating how to build an Node.js express RESTful application that integrates with MongoDB. You can see the [tutorial here](https://codetree.dev/node-rest-api-tutorial/)
+1. Clonar
+2. Instalar: `npm install`
+3. MongoDB debe estar en el sistema, en  `localhost:27017`, con una base de datos "peliculas" y una coleccion "movies".
+4. Start the application: `node index.js` or `npx nodemon`
 
-## Running the application
-
-1. Clone the repo
-2. Install dependencies: `npm install`
-3. [Install and run MongoDB](https://www.mongodb.com/docs/manual/installation/) on your system. This repo works on an instance running on `localhost:27017`
-4. Start the application: `node index.js`
