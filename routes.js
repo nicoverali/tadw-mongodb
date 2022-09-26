@@ -1,5 +1,5 @@
 const express = require('express')
-const { insertItem,  getPelis, getPelisT } = require('./db')
+const { insertItem,  findMovie, complexSearch, insertRandomMerge } = require('./db')
 
 const router = express.Router()
 
@@ -9,11 +9,8 @@ router.get('/public',(req,res) => {
 
 // Obtener las peliculas solicitadas
 router.get('/peliculas', (req, res) => {
-  getPelis()
+  findMovie(req.query.search)
     .then((items) => {
-      items = items.map((item) => ({
-        title: item.title
-      }))
       res.json(items)
     })
     .catch((err) => {
@@ -35,6 +32,28 @@ router.post('/peliculas', (req, res) => {
   insertItem(item)
     .then(() => {
       res.status(200).end()
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).end()
+    })
+})
+
+router.get('/complex', (req, res) =>{
+  complexSearch()
+    .then((items) => {
+      res.json(items)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).end()
+    })
+})
+
+router.get('/merge', (req, res) =>{
+  insertRandomMerge()
+    .then((result) => {
+      res.json(result)
     })
     .catch((err) => {
       console.log(err)

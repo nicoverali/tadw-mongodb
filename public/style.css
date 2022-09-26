@@ -1,48 +1,168 @@
+body {
+    background-color: #FAFAFA;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 
-input{
+body > h2 {
+    margin: auto;
+    display: block;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.panel {
+    width: 40vw;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.panel-item {
+    background-color: #FFF;
+    padding: 16px;
+    border: 1px solid #E0E0E0;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.panel-form {
+    margin-bottom: 16px;
+}
+
+.panel-button {
+    background-color: #8DCFFF;   
+    font-size: 16px;
+    padding: 16px;
     border: none;
-    padding: 10px;
-    margin: 10px;
-    height: 20px;
-    width: 500px;
-    border:1px solid #eaeaea;
-    outline:none;
-}
-input:hover{
-    border-color: #a0a0a0 #b9b9b9 #b9b9b9 #b9b9b9;
-}
-input:focus{
-    border-color:#4d90fe;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-input[type="submit"] {
-    border-radius: 2px;
-    background: #f2f2f2;
-    border: 1px solid #f2f2f2;
-    color: #757575;
-    cursor: default;
+.panel-button:hover {
+    background-color: #70bcf2;
+}
+
+.panel-description {
     font-size: 14px;
-    font-weight: bold;
-    width: 100px;
-    padding: 0 16px;
-    height:36px;
-}
-input[type="submit"]:hover {
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-    background: #f8f8f8;
-    border: 1px solid #c6c6c6;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-    color: #222;
+    color: rgba(0, 0, 0, 0.4);
+    font-weight: 400;
 }
 
-.main {
+.search {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.search .panel-form {
+    display: flex;
+}
+
+.search input {
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    padding: 16px;
+    font-size: 16px;
+    margin-right: 16px;
+
+    flex: 1 1;
+}
+
+.complex-search {
+    margin-right: 24px;
+}
+
+.complex-search,.movie-merge{
+    max-width: 300px;
+}
+
+.results {
+    background-color: #FFF;
+    width: 80vw;
+    border-radius: 10px;
+    border: 1px solid #E0E0E0;
+    margin: auto;
+    margin-top: 64px;
+    padding: 16px;
+}
+
+.results.hide {
+    display: none;
+}
+
+.error-msg {
     text-align: center;
 }
 
-h2 {
-    font-family: 'Verdana', cursive;
+.movie-item {
+    display: flex;
+    margin-bottom: 48px;
 }
 
-body {
-    background-color: #cccccc;
+.movie-item img {
+    max-height: 400px;
+}
+
+.movie-description {
+    margin-left: 24px;
+}
+
+.movie-description .title {
+    font-size: 32px;
+    margin: 0;
+}
+
+.movie-description .year {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.movie-description .cast {
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.ratings {
+    display: flex;
+}
+
+.ratings > div {
+    margin-right: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.ratings .rating-logo {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    background-size:cover;
+    display: inline-block;
+}
+
+.ratings .imdb .rating-logo {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/IMDb_Logo_Square.svg/2048px-IMDb_Logo_Square.svg.png");
+}
+
+.ratings .tomatoes-negative .rating-logo {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Rotten_Tomatoes_rotten.svg/2121px-Rotten_Tomatoes_rotten.svg.png");
+}
+
+.ratings .tomatoes-positive .rating-logo {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Rotten_Tomatoes.svg/1009px-Rotten_Tomatoes.svg.png");
+}
+
+.ratings .metacritic .rating-logo {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Metacritic.svg/1024px-Metacritic.svg.png");
+}
+
+
+.merge-movies-headline{
+    display: block;
+    text-align: center;
+    padding: 24px 0;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-right: 0;
+    border-left: 0;
 }

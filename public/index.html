@@ -6,19 +6,111 @@
         <link rel="stylesheet" href="style.css">            
     </head>
     <body>
-        <div class="main">
-            <h2>Muviserch TAdW22</h2>
-            <input type="text" placeholder="Buscar por título"/>
-            <button id="buttonBuscar">Buscar</button>
-        <div id="resultados">
-            
+        <h2>Muviserch TAdW22</h2>
+        <div class="panel">
+            <div class="panel-item search">
+                <div class="panel-form">
+                    <input id="query" type="text"/>
+                    <button class="panel-button" id="button-query">Buscar</button>
+                </div>
+                <div class="panel-description">
+                    Busca peliculas por palabras claves en sus titulos, actores, tramas, etc
+                </div>
+            </div>
+            <div class="panel-item complex-search">
+                <div class="panel-form">
+                    <button class="panel-button" id="button-complex">Busqueda Compleja</button>
+                </div>
+                <div class="panel-description">
+                    Todas las peliculas de Robert De Niro que no sean de USA con puntuación mayor a 7 en IMDB
+                </div>
+            </div>
+            <div class="panel-item movie-merge">
+                <div class="panel-form">
+                    <button class="panel-button" id="button-merge">Mixear Peliculas</button>
+                </div>
+                <div class="panel-description">
+                    Crea una nueva pelicula a partir de 5 peliculas al azar
+                </div>
+            </div>
         </div>
         
+        <div class="results hide" id="results">
+            
         </div>    
         
     </body>
 
-    <script src="clicks.js"></script>
+    <script>
+        let replaceResults = (content) => {
+            let results = document.getElementById("results")
+            results.classList.remove("hide")
+
+            results.innerHTML = ""
+            results.innerHTML = content
+        }
+
+
+        let makeMovieItem = (movie) => {
+            return `
+            <div class="movie-item">
+                <img src="${movie.poster}" alt="${movie.title}"
+                    onerror="this.onerror=null; this.src='https://s3-ap-southeast-1.amazonaws.com/popcornsg/placeholder-movieimage.png'">
+                 <div class="movie-description">
+                    <h3 class="title">${movie.title}</h3>
+                    <p class="year">${movie.year}</p>
+                    <p class="plot">${movie.fullplot}</p>
+
+                    ${movie.cast ? `
+                        <p class="cast">Actores: ${movie.cast.join(', ')}</p>
+                        `
+                    :""}
+                    
+
+                    <div class="ratings">
+                        ${movie.imdb?.rating ? `
+                            <div class="imdb">
+                                <div class="rating-logo"></div>
+                                <p class="rating-value">${movie.imdb?.rating}</p>
+                            </div>
+                            `
+                        :""}
+
+                        ${movie.tomatoes?.critic?.meter ? `
+                            <div class="${movie.tomatoes?.critic?.meter > 50 
+                                ? "tomatoes-positive"
+                                : "tomatoes-negative"}">
+                                <div class="rating-logo"></div>
+                                <p class="rating-value">${movie.tomatoes?.critic?.meter}%</p>
+                            </div>`
+                        :""}
+                        
+                        ${movie.metacritic ? `
+                            <div class="metacritic">
+                                <div class="rating-logo"></div>
+                                <p class="rating-value">${movie.metacritic}</p>
+                            </div>
+                            `
+                        :""}
+                        
+                    </div>
+                 </div>
+            </div>
+            `
+        }
+
+        let makeErrorSign = (msg) => {
+            return `
+                <div class="error-msg">
+                    <p>${msg}</p>
+                </div>
+            `
+        }
+
+    </script>
+    <script src="search.js"></script>
+    <script src="search_complex.js"></script>
+    <script src="merge_movies.js"></script>
 
 </html>    
     
